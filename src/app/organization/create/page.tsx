@@ -279,10 +279,10 @@ export default function CreateOrganizationPage() {
                 const fileName = `certificate_${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`
                 const filePath = `${formData.organization_platform_id}/${fileName}`
 
-                console.log('[CreateOrg] Uploading certificate to organization bucket:', filePath)
+                console.log('[CreateOrg] Uploading certificate to organizations bucket:', filePath)
 
                 const { error: uploadError } = await supabase.storage
-                    .from('organization')
+                    .from('organizations')
                     .upload(filePath, certificateFile, { upsert: true })
 
                 if (uploadError) throw uploadError

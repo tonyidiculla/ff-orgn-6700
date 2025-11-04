@@ -297,11 +297,11 @@ export default function EditOrganizationPage({ params }: { params: Promise<{ id:
             const fileName = `certificate_${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`
             const filePath = `${formData.organization_platform_id}/${fileName}`
 
-            console.log('[Certificate Upload] Uploading to:', { bucket: 'organization', filePath, fileSize: file.size });
+            console.log('[Certificate Upload] Uploading to:', { bucket: 'organizations', filePath, fileSize: file.size });
 
-            // Upload to storage (using organization bucket with authenticated client)
+            // Upload to storage (using organizations bucket with authenticated client)
             const { data, error: uploadError } = await supabase.storage
-                .from('organization')
+                .from('organizations')
                 .upload(filePath, file, { 
                     upsert: true,
                     contentType: file.type 
